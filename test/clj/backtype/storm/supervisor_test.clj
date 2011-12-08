@@ -58,7 +58,7 @@
       (bind topology (thrift/mk-topology
                        {1 (thrift/mk-spout-spec (TestPlannerSpout. true) :parallelism-hint 4)}
                        {}))
-      (bind sup1 (add-supervisor cluster :id "sup1" :ports [1 2 3 4]))
+      (bind sup1 (add-supervisor cluster :id "sup1" :host "localhost" :ports [1 2 3 4]))
       (bind changed (capture-changed-workers
                         (submit-mocked-assignment
                           (:nimbus cluster)

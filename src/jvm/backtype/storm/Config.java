@@ -148,6 +148,8 @@ public class Config extends HashMap<String, Object> {
     public static String DRPC_PORT = "drpc.port";
     
     
+    public static String SUPERVISOR_SLOTS_HOST = "supervisor.slots.host";
+    
     /**
      * A list of ports that can run workers on this supervisor. Each worker uses one port, and
      * the supervisor will only run one worker per port. Use this configuration to tune

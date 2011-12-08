@@ -62,12 +62,13 @@
   (advance-time-ms! (* (long secs) 1000)))
 
 
-(defnk add-supervisor [cluster-map :ports 2 :conf {} :id nil]
+(defnk add-supervisor [cluster-map :host nil :ports 2 :conf {} :id nil]
   (let [tmp-dir (local-temp-path)
         port-ids (if (sequential? ports) ports (doall (repeatedly ports (:port-counter cluster-map))))
         supervisor-conf (merge (:daemon-conf cluster-map)
                                conf
                                {STORM-LOCAL-DIR tmp-dir
+                                SUPERVISOR-SLOTS-HOST host
                                 SUPERVISOR-SLOTS-PORTS port-ids
                                })
         id-fn (if id (fn [] id) supervisor/generate-supervisor-id)
